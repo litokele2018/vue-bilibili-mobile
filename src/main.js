@@ -5,6 +5,8 @@ import store from './store'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import http from './network'
+import './assets/style.css'
+
 
 Vue.prototype.$http = http
 

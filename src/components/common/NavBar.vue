@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <div class="logo">
+    <div class="logo" @click="$router.push('/profile')">
       <img
         alt="logo"
         src="../../assets/logo.png"

@@ -13,5 +13,11 @@ ins.interceptors.request.use((config) => {
   return config
 })
 
+ins.interceptors.response.use((response) => {
+  return response
+}, (error) => {
+  return Promise.reject(error)
+})
+
 
 export default ins

@@ -30,7 +30,17 @@ const routes = [
   name: 'Profile',
   component: () => import( /* webpackChunkName: "Profile" */ '../views/Profile.vue'),
   meta: {
-    title: '个人主页'
+    title: '个人主页',
+    needToken: true
+  }
+},
+{
+  path: '/edit',
+  name: 'Edit',
+  component: () => import( /* webpackChunkName: "Profile" */ '../views/Edit.vue'),
+  meta: {
+    title: '个人资料',
+    needToken: true
   }
 }]
 
@@ -42,8 +52,16 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  if ((!localStorage.getItem('id') || !localStorage.getItem('token')) && (to.path !== '/login')) {
+  let id = localStorage.getItem('id')
+  let token = localStorage.getItem('token')
+
+  if ((!id || !token) && to.meta.needToken) {
     router.push('/login')
+    return
+  }
+  if (id && token && (to.path == '/login' || to.path == '/register')) {
+    router.push('/profile')
+    return
   }
   next()
 })
