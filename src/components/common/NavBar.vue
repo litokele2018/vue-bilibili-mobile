@@ -1,27 +1,23 @@
 <template>
   <div class="nav-bar">
-    <div class="logo" @click="$router.push('/profile')">
-      <img
-        alt="logo"
-        src="../../assets/logo.png"
-      />
+    <div @click="$route.path !== '/home' && $router.push('/home')" class="logo">
+      <img alt="logo" src="../../assets/logo.png" />
     </div>
     <div class="search">
       <van-icon name="search" />
       <span>请输入内容</span>
     </div>
     <div class="avatar">
-      <img
-        alt="avatar"
-        src="../../assets/head_img.jpg"
-      />
+      <img :src="avatar" @click="$router.push('/profile')" alt="avatar" />
       <div>下载App</div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["avatar"]
+};
 </script>
 
 <style lang="less" scoped>

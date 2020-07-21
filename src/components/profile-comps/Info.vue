@@ -1,26 +1,12 @@
 <template>
-  <div
-    class="info"
-    v-if="data"
-  >
+  <div class="info" v-if="data">
     <div class="banner">
-      <img
-        alt="banner"
-        src="../../assets/bannerTop_new.png"
-      />
+      <img alt="banner" src="../../assets/bannerTop_new.png" />
     </div>
     <div class="avatar-card">
       <div class="title-info">
-        <img
-          :src="data.user_img"
-          alt="avatar"
-          v-if=" data.user_img"
-        />
-        <img
-          alt="avatar"
-          src="../../assets/head_img.jpg"
-          v-else
-        />
+        <img :src="data.user_img" alt="avatar" v-if=" data.user_img" />
+        <img alt="avatar" src="../../assets/head_img.jpg" v-else />
         <div class="detail">
           <div class="nums">
             <div class="fans">
@@ -38,12 +24,16 @@
               <div>获赞</div>
             </div>
           </div>
-          <div class="edit" @click="$router.push('/edit')">编辑资料</div>
+          <div @click="$router.push('/edit')" class="edit">编辑资料</div>
         </div>
       </div>
       <div class="other-info">
         <div>{{data.username}}</div>
         <div>{{data.user_desc? data.user_desc: 'nothing'}}</div>
+        <div class="somemore">
+          <span>视频</span>
+          <span>收藏</span>
+        </div>
       </div>
     </div>
   </div>
@@ -67,7 +57,9 @@ export default {
   }
   .avatar-card {
     background-color: #fff;
-
+    padding: 2.778vw 5.556vw;
+    font-size: 3.889vw;
+    color: #446;
     .title-info {
       padding: 1.389vw;
       display: flex;
@@ -104,6 +96,21 @@ export default {
           text-align: center;
           font-size: 4.167vw;
           color: #fb7299;
+        }
+      }
+    }
+    .other-info {
+      margin-top: 2.778vw;
+      .somemore {
+        margin-top: 20px;
+        font-size: 12px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        :first-child {
+          margin-right: 5px;
+          padding: 0 5px;
+          border-right: 1px solid #999;
         }
       }
     }

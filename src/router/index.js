@@ -7,7 +7,16 @@ Vue.use(VueRouter)
 const routes = [
 {
   path: '/',
-  redirect: '/login'
+  redirect: '/home'
+},
+{
+  path: '/home',
+  name: 'Home',
+  component: () => import( /* webpackChunkName: "Home" */ '../views/Home.vue'),
+  meta: {
+    title: '首页',
+    needToken: true
+  }
 },
 {
   path: '/login',
@@ -37,9 +46,18 @@ const routes = [
 {
   path: '/edit',
   name: 'Edit',
-  component: () => import( /* webpackChunkName: "Profile" */ '../views/Edit.vue'),
+  component: () => import( /* webpackChunkName: "Edit" */ '../views/Edit.vue'),
   meta: {
     title: '个人资料',
+    needToken: true
+  }
+},
+{
+  path: '/article/:id',
+  name: 'Article',
+  component: () => import( /* webpackChunkName: "Article" */ '../views/Article.vue'),
+  meta: {
+    title: '详情',
     needToken: true
   }
 }]

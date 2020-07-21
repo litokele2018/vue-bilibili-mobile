@@ -1,7 +1,7 @@
 <template>
-  <div id="profile">
-    <nav-bar></nav-bar>
-    <info :data="detailData[0]" />
+  <div id="profile" v-if="Object.keys(info).length">
+    <nav-bar :avatar="info.user_img"></nav-bar>
+    <info :data="info" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      detailData: {}
+      info: {}
     };
   },
   methods: {
@@ -29,10 +29,10 @@ export default {
       let token = localStorage.getItem("token");
       try {
         const res = await this.$http.get(`/user/${id}`);
-        this.detailData = res.data;
-        console.log(res)
+        this.info = res.data[0];
+        console.log(res);
       } catch (error) {
-        this.$router.push('/login')
+        this.$router.push("/login");
       }
     }
   }
