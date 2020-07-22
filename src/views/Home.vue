@@ -1,7 +1,7 @@
 <template>
-  <div v-if="Object.keys(info).length && categories.length">
+  <div v-if="categories.length">
     <nav-bar :avatar="info.user_img" />
-    <van-tabs swipeable v-model="active" sticky>
+    <van-tabs sticky swipeable v-model="active">
       <van-tab :key="index" :title="item.title" v-for="(item, index) in categories">
         <van-list
           :finished="item.finished"
@@ -28,9 +28,7 @@ export default {
     Detail
   },
   async created() {
-    let id = localStorage.getItem("id");
-    const res = await this.$http.get(`/user/${id}`);
-    this.info = res.data[0];
+    this.getUserinfo();
     await this.getCategory();
     this.getList(this.categories[this.active]);
   },
@@ -46,7 +44,18 @@ export default {
       this.getList(this.categories[this.active]);
     }
   },
+  active() {
+    if (Object.keys(info).length) return;
+    this.getUserinfo();
+  },
   methods: {
+    async getUserinfo() {
+      let id = localStorage.getItem("id");
+      if (id) {
+        const res = await this.$http.get(`/user/${id}`);
+        this.info = res.data[0];
+      }
+    },
     getCategory() {
       return new Promise(async resolve => {
         const res = await this.$http.get("/category");

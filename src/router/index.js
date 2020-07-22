@@ -15,7 +15,6 @@ const routes = [
   component: () => import( /* webpackChunkName: "Home" */ '../views/Home.vue'),
   meta: {
     title: '首页',
-    needToken: true
   }
 },
 {
@@ -58,7 +57,6 @@ const routes = [
   component: () => import( /* webpackChunkName: "Article" */ '../views/Article.vue'),
   meta: {
     title: '详情',
-    needToken: true
   }
 }]
 

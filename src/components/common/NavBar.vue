@@ -8,7 +8,13 @@
       <span>请输入内容</span>
     </div>
     <div class="avatar">
-      <img :src="avatar" @click="$router.push('/profile')" alt="avatar" />
+      <img :src="avatar" @click="$route.path !== '/profile' && $router.push('/profile')" alt="avatar" v-if="avatar" />
+      <img
+        @click="$route.path !== '/profile' && $router.push('/profile')"
+        alt="avatar"
+        src="../../assets/head_img.jpg"
+        v-else
+      />
       <div>下载App</div>
     </div>
   </div>
